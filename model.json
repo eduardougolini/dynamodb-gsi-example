@@ -1,0 +1,51 @@
+[
+  {
+    "TableName": "Leaderboard",
+    "KeySchema": [
+      {
+        "AttributeName": "Id",
+        "KeyType": "HASH"
+      }
+    ],
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "Id",
+        "AttributeType": "N"
+      },
+      {
+        "AttributeName": "LeagueId",
+        "AttributeType": "N"
+      },
+      {
+        "AttributeName": "Score",
+        "AttributeType": "N"
+      }
+    ],
+    "ProvisionedThroughput": {
+      "ReadCapacityUnits": 5,
+      "WriteCapacityUnits": 5
+    },
+    "GlobalSecondaryIndexes": [
+      {
+        "IndexName": "LeaderboardIndex",
+        "KeySchema": [
+          {
+            "AttributeName": "LeagueId",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "Score",
+            "KeyType": "RANGE"
+          }
+        ],
+        "Projection": {
+          "ProjectionType": "ALL"
+        },
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      }
+    ]
+  }
+]
